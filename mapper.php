@@ -175,6 +175,7 @@
 	    background-color: white;
 	    outline: none;
 	    border-color: black;
+	    color: black;
         }
 
         #sidebar-grip {
@@ -1043,15 +1044,15 @@
                         <div id="range"></div>
                         <input id="changeRange" type="text">
                         <div style="margin-top: 5px;">
-                    		<select class="form-select-sm" id="rangeSelect">
-					<option>-20:20:1</option>
-					<option>0:20:1</option>
-					<option>0:100:1</option>
-					<option>-100:100:5</option>
-					<option>-1000:1000:10</option>
-					<option>-3000:3000:100</option>
-					<option>-10000:10000:100</option>
-                    		</select>
+                    	        <select class="form-select-sm" id="rangeSelect">
+			        	<option>-20:20:1</option>
+			        	<option>0:20:1</option>
+			        	<option>0:100:1</option>
+			        	<option>-100:100:5</option>
+			        	<option>-1000:1000:10</option>
+			        	<option>-3000:3000:100</option>
+			        	<option>-10000:10000:100</option>
+                    	        </select>
                         </div>
                         <div style="margin-top: 5px;">
                                 <button class="btn btn-outline-dark btn-sm" type="button" id="rangeAuto1" 

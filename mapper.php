@@ -1032,27 +1032,27 @@
                 </div>
                 <div class="row">
                     <div class="label1">Number of colorbands:</div>
-                    <div style="width: 240px; text-align: center;">
+                    <div style="width: 250px; text-align: center;">
                         <div id="numColorBands"></div>
                         <input id="changeNumColorBands" type="text">
                     </div>
                 </div>
                 <div class="row">
                     <div class="label1">Range:</div>
-                    <div style="width: 240px; text-align: center;">
+                    <div style="width: 250px; text-align: center;">
                         <div id="range"></div>
                         <input id="changeRange" type="text">
-                        <br>
-                        <div style="margin-top: 5px;"></div>
-                    	<select class="form-select-sm" id="rangeSelect">
-				<option>-20:20:1</option>
-				<option>0:20:1</option>
-				<option>0:100:1</option>
-				<option>-100:100:5</option>
-				<option>-1000:1000:10</option>
-				<option>-3000:3000:100</option>
-				<option>-10000:10000:100</option>
-                    	</select>
+                        <div style="margin-top: 5px;">
+                    		<select class="form-select-sm" id="rangeSelect">
+					<option>-20:20:1</option>
+					<option>0:20:1</option>
+					<option>0:100:1</option>
+					<option>-100:100:5</option>
+					<option>-1000:1000:10</option>
+					<option>-3000:3000:100</option>
+					<option>-10000:10000:100</option>
+                    		</select>
+                        </div>
                         <div style="margin-top: 5px;">
                                 <button class="btn btn-outline-dark btn-sm" type="button" id="rangeAuto1" 
 					data-bs-toggle="tooltip" data-bs-custom-class="custom-tooltip" 

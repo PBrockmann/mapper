@@ -7,9 +7,9 @@ https://thredds-su.ipsl.fr/thredds/wms/ipsl_thredds/brocksce/GCA/Flux_Transcom/F
 https://thredds-su.ipsl.fr/thredds/wms/ipsl_thredds/brocksce/VTK_Mapper/temp.nc?service=WMS&version=1.3.0&request=GetCapabilities
 
 #=========================================================
-https://webservices.ipsl.jussieu.fr/mapper/mapper.php?files=https://thredds-su.ipsl.fr/thredds/wms/ipsl_thredds/brocksce/GCA/Flux_Transcom/CRESCENDO/yearlymean-anom/fco2_LPJ-GUESS-S3_June2018-ext3_1980-2015_yearlymean-anom_XYT.nc,https://thredds-su.ipsl.fr/thredds/wms/ipsl_thredds/brocksce/GCA/Flux_Transcom/FOSSIL/yearlymean-anom/fco2_FOS-IER_June2018-ext3_1980-2011_yearlymean-anom_XYT.nc,https://thredds-su.ipsl.fr/thredds/wms/ipsl_thredds/brocksce/GCA/Flux_Transcom/Inversions-VERIFY/monthlymean/fco2_JENA-REG-Valid100km_June2018-ext3_2006-2018_monthlymean_XYT.nc,https://thredds-su.ipsl.fr/thredds/wms/ipsl_thredds/brocksce/VTK_Mapper/temp.nc
+https://webservices.ipsl.fr/mapper/mapper.php?files=https://thredds-su.ipsl.fr/thredds/wms/ipsl_thredds/brocksce/GCA/Flux_Transcom/CRESCENDO/yearlymean-anom/fco2_LPJ-GUESS-S3_June2018-ext3_1980-2015_yearlymean-anom_XYT.nc,https://thredds-su.ipsl.fr/thredds/wms/ipsl_thredds/brocksce/GCA/Flux_Transcom/FOSSIL/yearlymean-anom/fco2_FOS-IER_June2018-ext3_1980-2011_yearlymean-anom_XYT.nc,https://thredds-su.ipsl.fr/thredds/wms/ipsl_thredds/brocksce/GCA/Flux_Transcom/Inversions-VERIFY/monthlymean/fco2_JENA-REG-Valid100km_June2018-ext3_2006-2018_monthlymean_XYT.nc,https://thredds-su.ipsl.fr/thredds/wms/ipsl_thredds/brocksce/VTK_Mapper/temp.nc
 
-https://webservices.ipsl.jussieu.fr/mapper/mapper.php?files=https://thredds-su.ipsl.fr/thredds/wms/ipsl_thredds/brocksce/GCA/Flux_Transcom/CRESCENDO/yearlymean-anom/fco2_LPJ-GUESS-S3_June2018-ext3_1980-2015_yearlymean-anom_XYT.nc
+https://webservices.ipsl.fr/mapper/mapper.php?files=https://thredds-su.ipsl.fr/thredds/wms/ipsl_thredds/brocksce/GCA/Flux_Transcom/CRESCENDO/yearlymean-anom/fco2_LPJ-GUESS-S3_June2018-ext3_1980-2015_yearlymean-anom_XYT.nc
 
 #=========================================================
 http://www2.demis.nl/worldmap/wms.asp?REQUEST=GetMap&LAYERS=Coastlines,Borders&SRS=EPSG:4326&BBOX=-180,-90,180,90&WIDTH=600&HEIGHT=300&FORMAT=image/gif&STYLES=000000,AAAAAA&TRANSPARENT=TRUE

@@ -930,7 +930,7 @@
                         values.push(this.text);
                 });
 		values.sort();
-		alertLinkText = "https://webservices.ipsl.jussieu.fr/mapper/mapper.php?files=<br>" + values.join(',<br>');
+		alertLinkText = "https://webservices.ipsl.fr/mapper/mapper.php?files=<br>" + values.join(',<br>');
                 $("#alertLinkText").html(alertLinkText);
 	    });
 
@@ -941,7 +941,7 @@
                         values.push(this.text);
                 });
 		values.sort();
-		link = "https://webservices.ipsl.jussieu.fr/mapper/mapper.php?files=" + values.join(',');
+		link = "https://webservices.ipsl.fr/mapper/mapper.php?files=" + values.join(',');
 		navigator.clipboard.writeText(link);
 	    });
 

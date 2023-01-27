@@ -738,6 +738,11 @@
                 	$.get({url: ressource,
 			       async: false 
                               }, function(xml) {
+				isWMS = $(xml).find('WMS_Capabilities');
+				if (isWMS.length == 0) {
+					handleAjaxErrorWMS();
+				        return;
+				}	
                 		ressourceText = ressource.split("?")[0];
                         	$('#ressourceToAdd').val("");
                         	$('#ressource').append($('<option>', {
@@ -746,14 +751,18 @@
                         	}));
                         	$('#ressource').val(ressource).change();
                     	})
-                    	.fail(function() {
-                    	    $("#alertWMS").show();
-                    	    setTimeout(function() {
-                    	        $("#alertWMS").hide();
-                    	    }, 2000);
-                    	});
+                    	.fail(handleAjaxError);
 		}
             }
+
+	    //==============================================================================================
+	    function handleAjaxErrorWMS() {
+                $("#alertWMS").show();
+                setTimeout(function() {
+                    $("#alertWMS").hide();
+                }, 2000);
+
+	    }
 
             //==============================================================================================
             $('#addRessource').on('click', function(text) {

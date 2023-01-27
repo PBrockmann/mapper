@@ -751,7 +751,7 @@
                         	}));
                         	$('#ressource').val(ressource).change();
                     	})
-                    	.fail(handleAjaxError);
+                    	.fail(handleAjaxErrorWMS);
 		}
             }
 

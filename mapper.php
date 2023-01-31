@@ -18,6 +18,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/11.0.2/css/bootstrap-slider.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/11.0.2/bootstrap-slider.min.js"></script>
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.full.min.js"></script>
+
     <script src='lib/jquery-ui-1.12.1.custom/jquery-ui.min.js'></script>
     <link rel="stylesheet" href="lib/jquery-ui-1.12.1.custom/jquery-ui.min.css">
 
@@ -171,7 +174,7 @@
         }
 
         .form-select-sm {
-            width: 245px !important;
+            width: 257px !important;
 	    background-color: white;
 	    outline: none;
 	    border-color: black;
@@ -267,6 +270,14 @@
 
 	#copyLink:hover {
 	    color: #333;
+	}
+
+	.select2-selection__arrow {
+	    right: 10px !important;
+	}
+
+	.select2_dropdownCssClass {
+ 	     line-height: 8px;
 	}
     </style>
 
@@ -415,11 +426,11 @@
 
                 //============================================
                 ressource = $('#ressource').val();
-                variable = $('#variable').val();
-                variableLongname = $('#variable option:selected').text();
+		variable = $('#variable').select2("data")[0].text;
+                variableLongname = $('#variable').select2("data")[0].longname;
                 elevation = $('#elevation').val();
                 elevationText = $('#elevation option:selected').text();
-                cmap = $('#changeCmap').val();
+                cmap = $('#palette').val();
                 numcolorbands = $('#changeNumColorBands').slider('getValue');
                 inv = $('#paletteInversed').prop('checked');
                 range = $('#changeRange').slider('getValue');
@@ -454,7 +465,7 @@
                 //============================================
                 $.get(ressource + "?request=GetCapabilities", function(xml) {
 		        var layer = $(xml).find('Name').filter(function () {
-        	            	return $(this).text() === $('#variable').val();
+        	            	return $(this).text() === $('#variable').select2("data")[0].text;
     		        }).parent();
 		        var timeVariableArray = $(layer).find("Dimension[name='time']").text().trim();
 
@@ -555,12 +566,12 @@
 
             //==============================================================================================
             $.each(cmapArray, function(i, text) {
-                $('#changeCmap').append($('<option>', {
+                $('#palette').append($('<option>', {
                     value: text,
                     text: text
                 }));
             });
-            $('#changeCmap').val('div-PRGn');
+            $('#palette').val('div-PRGn');
 
             //==============================================================================================
             $("#changeRange").slider({
@@ -594,26 +605,49 @@
                     var variablesArray = [];
                     var variablesLongnameArray = [];
 		    for(i=0; i<layers.length; i++) {
-		    	variablesArray.push($(layers[i]).find('Name').first().text());
-		    	variablesLongnameArray.push($(layers[i]).find('Title').first().text());
+			    name = $(layers[i]).find('Name').first().text();
+			    longname = $(layers[i]).find('Title').first().text();
+			    variablesArray.push({
+			    	name: name,
+				longname: name == longname ? "" : longname
+		    	    });
 		    }
                     $('#variable').empty();
-                    $.each(variablesArray, function(i, text) {
-                        $('#variable').append($('<option>', {
-                            value: text,
-                            text: variablesLongnameArray[i]
-                        }));
-                    });
-            	    $('#variable').trigger('change');
+		    variablesArray.sort((a, b) => a.name.localeCompare(b.name));
+		    data = [];
+		    $.each(variablesArray, function(i, variable) {
+			data.push({
+			    id: i,
+                            text: variable.name,
+                            longname: variable.longname,
+			    html: '<div style="display: inline-block; width:200px;">'+ variable.name + '</div>' +
+			    	  '<div style="display: inline-block;">' + variable.longname + '</div>'
+                        });
+		    });
+		    $('#variable').select2({
+			data: data,
+			dropdownAutoWidth: true,
+			dropdownCssClass: 'select2_dropdownCssClass',
+			escapeMarkup: function(markup) {
+    				return markup;
+  			},
+	    		templateResult: function (data) {
+        			return data.html;
+    			},
+	    		templateSelection: function (data) {
+        			return data.text;
+    			}
+	    	    });
+            	    $('#variable').val(0).trigger('change');
 		    $('#addMap').prop("disabled", false);
 		    $('#getLink').prop("disabled", false);
                 });
             }
 
             //==============================================================================================
-            $('#variable').on('change', function() {
+	    $('#variable').on('change', function() {
                 ressource = $('#ressource').val();
-                variable = $('#variable').val();
+		variable = $('#variable').select2("data")[0].text;
                 $.get(ressource, function(xml) {
 		    var layer = $(xml).find('Name').filter(function () {
         			return $(this).text() === variable;
@@ -782,9 +816,9 @@
             });
 
             //==============================================================================================
-            $('#changeCmap').on('change', function() {
+            $('#palette').on('change', function() {
                 if (map[selectedId] === undefined) return;
-                cmap = $('#changeCmap').val();
+                cmap = $('#palette').val();
                 numcolorbands = $('#changeNumColorBands').slider('getValue');
                 map[selectedId].Parameters.cmap = cmap;
                 inv = $('#paletteInversed').prop('checked');
@@ -800,7 +834,7 @@
 
             //==============================================================================================
             $('#paletteInversed').on('change', function() {
-                $('#changeCmap').trigger('change');
+                $('#palette').trigger('change');
             });
 
             //==============================================================================================
@@ -854,7 +888,7 @@
             function updateInputs(Id) {
                 if (map[selectedId] === undefined) return;
                 cmap = map[Id].Parameters.cmap;
-                $('#changeCmap').val(cmap);
+                $('#palette').val(cmap);
                 range = map[Id].Parameters.range;
                 rangeMin = map[Id].Parameters.rangeMin;
                 rangeMax = map[Id].Parameters.rangeMax;
@@ -934,9 +968,11 @@
 			return;
 		}
                 $("#alertLink").show();
-		var values = new Array();
+		var values = [];
+		var valuesWithLinks = [];
                 $("#ressource option").each(function(){
-                        values.push(this.text);
+			values.push("<a target='_blank' href='" + this.text + "?service=WMS&request=GetCapabilities'>"+
+					this.text + "</a>");
                 });
 		values.sort();
 		alertLinkText = "https://webservices.ipsl.fr/mapper/mapper.php?files=<br>" + values.join(',<br>');
@@ -945,7 +981,7 @@
 
             //==============================================================================================
             $('#copyLink').on('click', function() {
-		var values = new Array();
+		var values = [];
                 $("#ressource option").each(function(){
                         values.push(this.text);
                 });
@@ -977,6 +1013,21 @@
             $('#ressourceToAdd').val("");
 	    $('#addMap').prop("disabled", true);
 	    $('#getLink').prop("disabled", true);
+
+	    //==============================================================================================
+	    $('#ressource').select2({
+		dropdownAutoWidth: true,
+		dropdownCssClass: 'select2_dropdownCssClass',
+	    });
+	    $('#variable').select2();
+	    $('#elevation').select2({
+		dropdownAutoWidth: true,
+		dropdownCssClass: 'select2_dropdownCssClass',
+	    });
+	    $('#palette').select2({
+		dropdownAutoWidth: true,
+		dropdownCssClass: 'select2_dropdownCssClass',
+	    });
 
             //==============================================================================================
 	    var ressourcesArray = <?php echo json_encode(explode(',', $_GET['files'])); ?>;
@@ -1025,7 +1076,7 @@
                 </div>
                 <div class="row">
                     <div class="label1">Elevation:</div>
-                    <select class="form-select-sm" id="elevation" style="width: 150px !important;">
+                    <select class="form-select-sm" id="elevation" style="width: 200px !important;">
                     </select>
                 </div>
                 <div class="row gx-0" style="text-align: center;">
@@ -1033,7 +1084,7 @@
                 </div>
                 <div class="row">
                     <div class="label1">Palette:</div>
-                    <select class="form-select-sm" id="changeCmap" style="width: 150px !important;">
+                    <select class="form-select-sm" id="palette" style="width: 160px !important;">
                     </select>
                     <div style="width: 100px;">
                         <input class="form-check-input" type="checkbox" value="" id="paletteInversed">
@@ -1061,8 +1112,8 @@
 			        	<option>-1000:1000:10</option>
 			        	<option>-3000:3000:100</option>
 			        	<option>-10000:10000:100</option>
-                    	        </select>
-                        </div>
+				</select>
+			</div>
                         <div style="margin-top: 5px;">
                                 <button class="btn btn-outline-dark btn-sm" type="button" id="rangeAuto1" 
 					data-bs-toggle="tooltip" data-bs-custom-class="custom-tooltip" 
@@ -1086,7 +1137,7 @@
                 </div>
                 <div id="sidebar-grip"></div>
                 <div id="sidebar-footer" data-bs-toggle="tooltip" data-bs-custom-class="custom-tooltip" 
-			data-bs-title="Contact: Patrick.Brockmann@lsce.ipsl.fr">&#169;LSCE - revision 2023/01/27
+			data-bs-title="Contact: Patrick.Brockmann@lsce.ipsl.fr">&#169;LSCE - revision 2023/02/01
                 </div>
             </div>
         </div>

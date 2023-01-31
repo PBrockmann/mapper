@@ -888,7 +888,7 @@
             function updateInputs(Id) {
                 if (map[selectedId] === undefined) return;
                 cmap = map[Id].Parameters.cmap;
-                $('#palette').val(cmap);
+                $('#palette').val(cmap).trigger('change');
                 range = map[Id].Parameters.range;
                 rangeMin = map[Id].Parameters.rangeMin;
                 rangeMax = map[Id].Parameters.rangeMax;

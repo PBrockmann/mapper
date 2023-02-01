@@ -1051,7 +1051,7 @@
                 <h3><a href="mapper.php" target="_blank">Mapper</a></h3>
                 <span id="sidebar-icon" class="bi bi-chevron-left sidebar-icon"></span>
                 <p>An interface to produce slippy maps using WMS (Web Map Service) layers from netCDF files exposed by the IPSL
-                    <a target="_blank" href="https://thredds-su.ipsl.fr/thredds/catalog/ipsl_thredds/brocksce/GCA/Flux_Transcom/catalog.html">Thredds catalog</a>
+                    <a target="_blank" href="https://thredds-su.ipsl.fr">Thredds catalog</a>
                 </p>
             </div>
             <div class="sidebar-body">

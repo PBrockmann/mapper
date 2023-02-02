@@ -1105,6 +1105,7 @@
                         <input id="changeRange" type="text">
                         <div style="margin-top: 5px;">
                     	        <select class="form-select-sm" id="rangeSelect">
+			        	<option value="" selected disabled>Preset ranges</option>
 			        	<option>-20:20:1</option>
 			        	<option>0:20:1</option>
 			        	<option>0:100:1</option>
@@ -1137,7 +1138,7 @@
                 </div>
                 <div id="sidebar-grip"></div>
                 <div id="sidebar-footer" data-bs-toggle="tooltip" data-bs-custom-class="custom-tooltip" 
-			data-bs-title="Contact: Patrick.Brockmann@lsce.ipsl.fr">&#169;LSCE - revision 2023/02/01
+			data-bs-title="Contact: Patrick.Brockmann@lsce.ipsl.fr">&#169;LSCE - revision 2023/02/02
                 </div>
             </div>
         </div>

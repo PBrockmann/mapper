@@ -571,7 +571,8 @@
                     text: text
                 }));
             });
-            $('#palette').val('div-PRGn');
+            //$('#palette').val('div-PRGn');
+            $('#palette').val('psu-plasma');
 
             //==============================================================================================
             $("#changeRange").slider({

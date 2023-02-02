@@ -1120,7 +1120,7 @@
 			</div>
 			<div style="margin-top: 5px;">
 				<button class="btn btn-outline-dark btn-sm" type="button" id="rangeAuto1" 
-					toggle="tooltip" data-bs-custom-class="custom-tooltip" 
+					data-bs-toggle="tooltip" data-bs-custom-class="custom-tooltip" 
 					data-bs-title="Range set from min and max of the variable with 20 steps for selecting range">
 					min,max,20 steps</button>
                                 <button class="btn btn-outline-dark btn-sm" type="button" id="rangeAuto2"

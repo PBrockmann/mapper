@@ -244,7 +244,7 @@
         }
 
 	#rangeSelect {
-            width: 200px !important;
+            width: 160px !important;
 	    background-color: lightgray;
 	}
 

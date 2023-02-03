@@ -1153,7 +1153,7 @@
                 </div>
                 <div id="sidebar-grip"></div>
                 <div id="sidebar-footer" data-bs-toggle="tooltip" data-bs-custom-class="custom-tooltip" 
-			data-bs-title="Contact: Patrick.Brockmann@lsce.ipsl.fr">&#169;LSCE - revision 2023/02/02
+			data-bs-title="Contact: Patrick.Brockmann@lsce.ipsl.fr">&#169;LSCE - revision 2023/02/03
                 </div>
             </div>
         </div>

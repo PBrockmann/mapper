@@ -1048,17 +1048,19 @@
 	    // https://github.com/select2/select2/issues/3472
 	    // https://jsfiddle.net/KyleMit/nb43Lma7/
 	    // https://jsfiddle.net/PBrockmann/ktcnr6o7/
-	    $(document).on('keyup', '.select2', function (e) {
+	    $(document).on('keydown', '.select2', function (e) {
 		var KEYS = { UP: 38, DOWN: 40 };
 		var sel = $(this).closest('.select2-container').parent().find('select');
 		//console.log($(sel).attr('id'));
+		var newValue = null; 
                 if (e.keyCode === KEYS.DOWN) {
                   newValue = $(sel).find(':selected').next().val();
                 } else if (e.keyCode === KEYS.UP) {
                   newValue = $(sel).find(':selected').prev().val();
 		}
 		if (newValue != undefined) {
-                  $(sel).val(newValue).trigger('change');
+			$(sel).val(newValue).trigger('change');
+			console.log(newValue);
                 }
             });
 	    

@@ -709,11 +709,17 @@
                 layer = layer1[selectedId]._currentLayer.wmsParams['LAYERS'];
                 elevation = layer1[selectedId]._currentLayer.wmsParams['ELEVATION'];
                 url = layer1[selectedId]._currentLayer._url;
+		// minx,miny,maxx,maxy
+		BBOX = map[selectedId].getBounds().getWest() + ',' + map[selectedId].getBounds().getSouth() + ',' +
+		       map[selectedId].getBounds().getEast() + ',' + map[selectedId].getBounds().getNorth();
                 $.get(url +
                 	"REQUEST=GetMetadata&VERSION=1.1.1" +
                 	"&LAYER=" + layer +
                 	"&ELEVATION=" + elevation +
-                	"&ITEM=minmax&SRS=EPSG:4326&BBOX=-180,-90,180,90&WIDTH=200&HEIGHT=200",
+			"&ITEM=minmax&SRS=EPSG:4326" +
+			//"&BBOX=-180,-90,180,90" +		// Global
+			"&BBOX=" + BBOX +
+			"&WIDTH=200&HEIGHT=200",
                 	function(response) {
                 		rangeMin = response.min;
                 		rangeMax = response.max;
@@ -740,11 +746,17 @@
             	layer = layer1[selectedId]._currentLayer.wmsParams['LAYERS'];
                 elevation = layer1[selectedId]._currentLayer.wmsParams['ELEVATION'];
             	url = layer1[selectedId]._currentLayer._url;
+		// minx,miny,maxx,maxy
+		BBOX = map[selectedId].getBounds().getWest() + ',' + map[selectedId].getBounds().getSouth() + ',' +
+		       map[selectedId].getBounds().getEast() + ',' + map[selectedId].getBounds().getNorth();
             	$.get(url +
             		"REQUEST=GetMetadata&VERSION=1.1.1" +
             		"&LAYER=" + layer +
                 	"&ELEVATION=" + elevation +
-            		"&ITEM=minmax&SRS=EPSG:4326&BBOX=-180,-90,180,90&WIDTH=200&HEIGHT=200",
+			"&ITEM=minmax&SRS=EPSG:4326" +
+			//"&BBOX=-180,-90,180,90" +		// Global
+			"&BBOX=" + BBOX +
+			"&WIDTH=200&HEIGHT=200",
             		function(response) {
             			rangeMin = Math.round(response.min);
             			rangeMax = Math.round(response.max);
@@ -1119,13 +1131,13 @@
 				</select>
 			</div>
 			<div style="margin-top: 5px;">
-				<button class="btn btn-outline-dark btn-sm" type="button" id="rangeAuto1" 
-					data-bs-toggle="tooltip" data-bs-custom-class="custom-tooltip" 
-					data-bs-title="Range set from min and max of the variable with 20 steps for selecting range">
+				<button class="btn btn-outline-dark btn-sm" type="button" id="rangeAuto1"
+					data-bs-toggle="tooltip" data-bs-custom-class="custom-tooltip"
+					data-bs-title="Set range from local min and max of the variable with 20 steps">
 					min,max,20 steps</button>
                                 <button class="btn btn-outline-dark btn-sm" type="button" id="rangeAuto2"
-					data-bs-toggle="tooltip" data-bs-custom-class="custom-tooltip" 
-					data-bs-title="Range set from int(min) and int(max) of the variable with 1 as range step value">
+					data-bs-toggle="tooltip" data-bs-custom-class="custom-tooltip"
+					data-bs-title="Set range from local int(min) and int(max) of the variable with 1 as range step value">
 					min,max,step 1</button>
                         </div>
                     </div>

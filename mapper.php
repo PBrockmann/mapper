@@ -1060,7 +1060,6 @@
 		}
 		if (newValue != undefined) {
 			$(sel).val(newValue).trigger('change');
-			console.log(newValue);
                 }
             });
 	    

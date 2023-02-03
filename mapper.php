@@ -1133,11 +1133,11 @@
 			<div style="margin-top: 5px;">
 				<button class="btn btn-outline-dark btn-sm" type="button" id="rangeAuto1"
 					data-bs-toggle="tooltip" data-bs-custom-class="custom-tooltip"
-					data-bs-title="Set range from local min and max of the variable with 20 steps">
+					data-bs-title="Set range from min to max of the displayed variable with 20 steps">
 					min,max,20 steps</button>
                                 <button class="btn btn-outline-dark btn-sm" type="button" id="rangeAuto2"
 					data-bs-toggle="tooltip" data-bs-custom-class="custom-tooltip"
-					data-bs-title="Set range from local int(min) and int(max) of the variable with 1 as range step value">
+					data-bs-title="Set range from local int(min) to int(max) of the displayed variable with 1 as range step value">
 					min,max,step 1</button>
                         </div>
                     </div>

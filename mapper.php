@@ -475,7 +475,8 @@
                         });
                         map[Id].timeDimension = timeDimension;
 
-                        if (timeVariableArray.length != 0) {
+                        //console.log(timeDimension.getAvailableTimes().length, timeDimension.getAvailableTimes());
+                        if (timeDimension.getAvailableTimes().length > 1) {
                             var player = new L.TimeDimension.Player({
                                     transitionTime: 100,
                                     loop: true,
@@ -549,13 +550,18 @@
                         $('#mapContainer' + Id).height(height);
                         $('#map' + Id).width(width - 100);
                         $('#map' + Id).height(height - 40);
-                        file = ressource.split('/').slice(-1)[0];
-                        if (elevation == null) {
-			   zTitle = "&nbsp;";
-			} else {
-			   zTitle = "Z=" + elevationText;
+			file = ressource.split('/').slice(-1)[0];
+			div1 = "<div style='width: 20px; display: inline-block;'></div>";
+                        extraTitle = div1;
+			if (elevation != null) { 
+				extraTitle = extraTitle + "Z=" + elevationText;
 			}
-                        $('#mapTitle' + Id).html(file + "<br>" + variableLongname + " [" + variableUnits + "]" + "<br>" + zTitle);
+                        if (timeDimension.getAvailableTimes().length == 1) {
+                        	dataString = new Date(timeDimension.getAvailableTimes()[0]).toISOString();
+				extraTitle = extraTitle + div1 + "T=" + dataString;
+			}
+			$('#mapTitle' + Id).html(file + "<br>" + variableLongname + " [" + variableUnits + "]" + 
+							"<br>" + extraTitle);
 
                         map[Id].invalidateSize();
                         syncMaps();

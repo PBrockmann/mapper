@@ -394,6 +394,11 @@
             //==============================================================================================
             $('#addMap').on('click', function() {
 
+		//============================================
+		$.ajax({
+			url: "increment.php" 
+		});
+		    
                 //============================================
                 Id++;
                 selectedId = Id;
@@ -618,7 +623,7 @@
 			    longname = $(layers[i]).find('Title').first().text();
 			    variablesArray.push({
 			    	name: name,
-				longname: name == longname ? "" : longname
+				longname: longname
 		    	    });
 		    }
                     $('#variable').empty();
